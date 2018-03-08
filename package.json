@@ -1,14 +1,17 @@
 {
-  "name": "shark",
-  "version": "1.0.0",
-  "description": "CLI tool for shark",
+  "name": "shark-test",
+  "version": "0.0.1",
+  "description": "test cli-tool for shark angular projects",
   "main": "./dist/src/index.js",
   "bin": {
-    "st": "./dist/src/index.js",
-    "shark": "./dist/src/index.js"
+    "shark-test": "./dist/src/index.js",
+    "st": "./dist/src/index.js"
   },
   "keywords": [],
-  "scripts": {},
+  "scripts": {
+    "build": "tsc",
+    "start": "tsc -w"
+  },
   "dependencies": {
     "ajv": "^6.1.1",
     "chalk": "~2.2.0",

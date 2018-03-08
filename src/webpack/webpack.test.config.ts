@@ -6,25 +6,23 @@ const AddAssetHtmlPlugin = require('add-asset-html-webpack-plugin');
 /* const ProgressBarPlugin = require('progress-bar-webpack-plugin');
  *//* const ngtools = require('@ngtools/webpack');
  */const ExtractTextPlugin = require('extract-text-webpack-plugin');
+import { getWebpackTestConfig } from '../config/test-config';
+const config = getWebpackTestConfig();
 
 // --mock test confg start
-const rootPath = '/Users/bobo/Work/ygp/src';
-
-const SharkConfig = {
-    srcPath: `${rootPath}/main/webapp`,
-    buildClient: `${rootPath}/build/client`
-};
+const rootPath = config.projectRoot;
+console.log('webpack config', config);
 // --mock test confg end
 
 export const webpackTestConfig = {
     devtool: 'inline-source-map',
     entry:
         {
-            main: path.join(rootPath, 'test.ts'),
-            polyfills: [path.join(rootPath, 'polyfills.ts')]
+            main: path.join(rootPath, config.basePath, config.main),
+            polyfills: [path.join(rootPath, config.basePath, config.polyfills)]
         },
     output: {
-        path: SharkConfig.buildClient,
+        path: path.join(rootPath, '../', 'build', 'app'),
         filename: '[name].js',
         chunkFilename: 'js/chunk-[id].js',
         publicPath: '/'
@@ -80,7 +78,7 @@ export const webpackTestConfig = {
             }, {
                 test: /\.scss$/,
                 exclude: [
-                    path.join(SharkConfig.srcPath, 'app')
+                    path.join(rootPath, config.basePath, config.componentPath)
                 ],
                 // loader: 'style-loader!css-loader?sourceMap!sass-loader?sourceMap' // 先加载css，会引起js计算的bug
                 loader: ExtractTextPlugin.extract({
@@ -90,7 +88,7 @@ export const webpackTestConfig = {
             }, {
                 test: /\.scss$/,
                 include: [
-                    path.join(SharkConfig.srcPath, 'app')
+                    path.join(rootPath, config.basePath, config.componentPath)
                 ],
                 loaders: [
                     'to-string-loader',
@@ -116,7 +114,7 @@ export const webpackTestConfig = {
         }),
         new HtmlWebpackPlugin({
             filename: 'index.html',
-            template: path.join(SharkConfig.srcPath, 'index.ejs')
+            template: path.join(rootPath, config.basePath, config.indexTemplate)
         }),
         new ExtractTextPlugin('css/[name].css'),
         /* new ngtools.AotPlugin({
@@ -124,11 +122,11 @@ export const webpackTestConfig = {
             tsConfigPath: path.join(rootPath, '../', 'tsconfig.json')
         }), */
         new AddAssetHtmlPlugin([{
-            filepath: require.resolve(path.join(rootPath, '../', 'dll', 'angular.dll.js'))
+            filepath: require.resolve(path.join(rootPath, 'dll', 'angular.dll.js'))
         }]),
         new webpack.DllReferencePlugin({
-            context: path.join(rootPath, '../'),
-            manifest: require(path.join(rootPath, '../', 'dll', 'angular-manifest.json'))
+            context: rootPath,
+            manifest: require(path.join(rootPath, 'dll', 'angular-manifest.json'))
         })
     ]
 };

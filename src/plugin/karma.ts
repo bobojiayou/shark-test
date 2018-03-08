@@ -5,12 +5,13 @@ import * as webpack from 'webpack';
 import { isDirectory } from '../lib/is-directory';
 import { webpackTestConfig } from '../webpack/webpack.test.config';
 import { KarmaWebpackThrowError } from '../webpack/karma-webpack-throw-error';
+import { getKarmaTestConfig } from '../config/test-config';
 const webpackDevMiddleware = require('webpack-dev-middleware');
 
 let blocked: any[] = [];
 let isBlocked = false;
-const appRoot = '/Users/bobo/Work/ygp/src';
-
+const karmaTestConfig = getKarmaTestConfig();
+console.log('karmaTestConfig', karmaTestConfig);
 // Add files to the Karma files array.
 function addKarmaFiles(files: any[], newFiles: any[], prepend = false) {
     const defaults = {
@@ -33,13 +34,13 @@ function addKarmaFiles(files: any[], newFiles: any[], prepend = false) {
     }
 }
 const appConfig = {
-    assets: [`${appRoot}/main/webapp/assets/fonts`, 'favicon.ico'],
-    test: 'test.ts'
+    assets: karmaTestConfig.assets,
+    test: karmaTestConfig.main
 };
 const init: any = (config: any, emitter: any, customFileHandlers: any) => {
     const testConfig: any = {
         environment: 'dev',
-        codeCoverage: true,
+        codeCoverage: false,
         sourcemaps: true,
         progress: true,
         preserveSymlinks: false,
@@ -66,7 +67,7 @@ const init: any = (config: any, emitter: any, customFileHandlers: any) => {
             pattern = typeof pattern === 'string' ? { glob: pattern } : pattern;
             // Add defaults.
             // Input is always resolved relative to the appRoot.
-            pattern.input = path.resolve(appRoot, pattern.input || '');
+            pattern.input = path.resolve(path.join(karmaTestConfig.projectRoot, karmaTestConfig.basePath), pattern.input || '');
             pattern.output = pattern.output || '';
             pattern.glob = pattern.glob || '';
 
@@ -117,7 +118,7 @@ const init: any = (config: any, emitter: any, customFileHandlers: any) => {
     config.webpackMiddleware = Object.assign(webpackMiddlewareConfig, config.webpackMiddleware);
 
     // Remove the shark test file if present, for backwards compatibility.
-    const testFilePath = path.join(appRoot, appConfig.test);
+    const testFilePath = path.join(karmaTestConfig.projectRoot, karmaTestConfig.basePath, appConfig.test);
     config.files.forEach((file: any, index: number) => {
         if (path.normalize(file.pattern) === testFilePath) {
             config.files.splice(index, 1);
