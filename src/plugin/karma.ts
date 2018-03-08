@@ -255,8 +255,8 @@ const initSourcemapReporter: any = function (this: any, baseReporterDecorator: a
 initSourcemapReporter.$inject = ['baseReporterDecorator', 'config'];
 
 module.exports = Object.assign({
-    'framework:shark-test': ['factory', init],
-    'preprocessor:shark-test': ['factory', preprocessor],
-    'reporter:shark-test': ['type', initSourcemapReporter],
+    'framework:shark': ['factory', init],
+    'preprocessor:shark': ['factory', preprocessor],
+    'reporter:shark': ['type', initSourcemapReporter],
     'middleware:sharkBlocker': ['factory', requestBlocker]
 });
