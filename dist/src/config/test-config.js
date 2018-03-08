@@ -4,7 +4,7 @@ const path = require("path");
 const fs = require("fs");
 exports.getTestConfig = () => {
     const projectRoot = exports.getProjectRootPath();
-    const testConfig = JSON.parse(fs.readFileSync(path.join(projectRoot, 'shark-test-conf.json'), 'utf-8'));
+    const testConfig = JSON.parse(fs.readFileSync(path.resolve(projectRoot, 'shark-test-conf.json'), 'utf-8'));
     testConfig.projectRoot = projectRoot;
     return testConfig;
 };

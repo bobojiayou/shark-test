@@ -28,7 +28,7 @@ export interface KarmaTestConfig {
 
 export const getTestConfig = (): TestConfig => {
     const projectRoot = getProjectRootPath();
-    const testConfig = JSON.parse(fs.readFileSync(path.join(projectRoot, 'shark-test-conf.json'), 'utf-8'));
+    const testConfig = JSON.parse(fs.readFileSync(path.resolve(projectRoot, 'shark-test-conf.json'), 'utf-8'));
     testConfig.projectRoot = projectRoot;
     return testConfig;
 };

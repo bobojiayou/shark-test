@@ -11,18 +11,18 @@ const config = getWebpackTestConfig();
 
 // --mock test confg start
 const rootPath = config.projectRoot;
-console.log('webpack config', config);
+// console.log('webpack config', config);
 // --mock test confg end
 
 export const webpackTestConfig = {
     devtool: 'inline-source-map',
     entry:
         {
-            main: path.join(rootPath, config.basePath, config.main),
-            polyfills: [path.join(rootPath, config.basePath, config.polyfills)]
+            main: path.resolve(rootPath, config.basePath, config.main),
+            polyfills: [path.resolve(rootPath, config.basePath, config.polyfills)]
         },
     output: {
-        path: path.join(rootPath, '../', 'build', 'app'),
+        path: path.resolve(rootPath, '../', 'build', 'app'),
         filename: '[name].js',
         chunkFilename: 'js/chunk-[id].js',
         publicPath: '/'
@@ -78,7 +78,7 @@ export const webpackTestConfig = {
             }, {
                 test: /\.scss$/,
                 exclude: [
-                    path.join(rootPath, config.basePath, config.componentPath)
+                    path.resolve(rootPath, config.basePath, config.componentPath)
                 ],
                 // loader: 'style-loader!css-loader?sourceMap!sass-loader?sourceMap' // 先加载css，会引起js计算的bug
                 loader: ExtractTextPlugin.extract({
@@ -88,7 +88,7 @@ export const webpackTestConfig = {
             }, {
                 test: /\.scss$/,
                 include: [
-                    path.join(rootPath, config.basePath, config.componentPath)
+                    path.resolve(rootPath, config.basePath, config.componentPath)
                 ],
                 loaders: [
                     'to-string-loader',
@@ -114,19 +114,19 @@ export const webpackTestConfig = {
         }),
         new HtmlWebpackPlugin({
             filename: 'index.html',
-            template: path.join(rootPath, config.basePath, config.indexTemplate)
+            template: path.resolve(rootPath, config.basePath, config.indexTemplate)
         }),
         new ExtractTextPlugin('css/[name].css'),
         /* new ngtools.AotPlugin({
             skipCodeGeneration: true, // 默认false. false：使用AoT ; true：不使用AoT
-            tsConfigPath: path.join(rootPath, '../', 'tsconfig.json')
+            tsConfigPath: path.resolve(rootPath, '../', 'tsconfig.json')
         }), */
         new AddAssetHtmlPlugin([{
-            filepath: require.resolve(path.join(rootPath, 'dll', 'angular.dll.js'))
+            filepath: require.resolve(path.resolve(rootPath, 'dll', 'angular.dll.js'))
         }]),
         new webpack.DllReferencePlugin({
-            context: rootPath,
-            manifest: require(path.join(rootPath, 'dll', 'angular-manifest.json'))
+            context: path.resolve(rootPath),
+            manifest: require(path.resolve(rootPath, 'dll', 'angular-manifest.json'))
         })
     ]
 };

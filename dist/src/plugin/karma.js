@@ -12,7 +12,7 @@ const webpackDevMiddleware = require('webpack-dev-middleware');
 let blocked = [];
 let isBlocked = false;
 const karmaTestConfig = test_config_1.getKarmaTestConfig();
-console.log('karmaTestConfig', karmaTestConfig);
+// console.log('karmaTestConfig', karmaTestConfig);
 // Add files to the Karma files array.
 function addKarmaFiles(files, newFiles, prepend = false) {
     const defaults = {
@@ -53,8 +53,8 @@ const init = (config, emitter, customFileHandlers) => {
         const smsPath = path.dirname(require.resolve('source-map-support'));
         const ksmsPath = path.dirname(require.resolve('karma-source-map-support'));
         addKarmaFiles(config.files, [
-            { pattern: path.join(smsPath, 'browser-source-map-support.js'), watched: false },
-            { pattern: path.join(ksmsPath, 'client.js'), watched: false }
+            { pattern: path.resolve(smsPath, 'browser-source-map-support.js'), watched: false },
+            { pattern: path.resolve(ksmsPath, 'client.js'), watched: false }
         ], true);
     }
     // Add assets. This logic is mimics the one present in GlobCopyWebpackPlugin.
@@ -65,11 +65,11 @@ const init = (config, emitter, customFileHandlers) => {
             pattern = typeof pattern === 'string' ? { glob: pattern } : pattern;
             // Add defaults.
             // Input is always resolved relative to the appRoot.
-            pattern.input = path.resolve(path.join(karmaTestConfig.projectRoot, karmaTestConfig.basePath), pattern.input || '');
+            pattern.input = path.resolve(path.resolve(karmaTestConfig.projectRoot, karmaTestConfig.basePath), pattern.input || '');
             pattern.output = pattern.output || '';
             pattern.glob = pattern.glob || '';
             // Build karma file pattern.
-            const assetPath = path.join(pattern.input, pattern.glob);
+            const assetPath = path.resolve(pattern.input, pattern.glob);
             const filePattern = is_directory_1.isDirectory(assetPath) ? assetPath + '/**' : assetPath;
             addKarmaFiles(config.files, [{ pattern: filePattern, included: false }]);
             // The `files` entry serves the file from `/base/{asset.input}/{asset.glob}`.
@@ -78,12 +78,12 @@ const init = (config, emitter, customFileHandlers) => {
             let relativePath, proxyPath;
             if (fs.existsSync(assetPath)) {
                 relativePath = path.relative(config.basePath, assetPath);
-                proxyPath = path.join(pattern.output, pattern.glob);
+                proxyPath = path.resolve(pattern.output, pattern.glob);
             }
             else {
                 // For globs (paths that don't exist), proxy pattern.output to pattern.input.
                 relativePath = path.relative(config.basePath, pattern.input);
-                proxyPath = path.join(pattern.output);
+                proxyPath = path.resolve(pattern.output);
             }
             // Proxy paths must have only forward slashes.
             proxyPath = proxyPath.replace(/\\/g, '/');
@@ -112,7 +112,7 @@ const init = (config, emitter, customFileHandlers) => {
     config.webpack = Object.assign(webpack_test_config_1.webpackTestConfig, config.webpack);
     config.webpackMiddleware = Object.assign(webpackMiddlewareConfig, config.webpackMiddleware);
     // Remove the shark test file if present, for backwards compatibility.
-    const testFilePath = path.join(karmaTestConfig.projectRoot, karmaTestConfig.basePath, appConfig.test);
+    const testFilePath = path.resolve(karmaTestConfig.projectRoot, karmaTestConfig.basePath, appConfig.test);
     config.files.forEach((file, index) => {
         if (path.normalize(file.pattern) === testFilePath) {
             config.files.splice(index, 1);
@@ -170,8 +170,8 @@ const init = (config, emitter, customFileHandlers) => {
                 // Ensure script and style bundles are served.
                 // They are mentioned in the custom karma context page and we don't want them to 404.
                 const alwaysServe = [
-                    '/_shark_test_/polyfills.js',
                     '/_shark_test_/angular.dll.js',
+                    '/_shark_test_/polyfills.js',
                     '/_shark_test_/bootstrap.js',
                     '/_shark_test_/main.js'
                 ];

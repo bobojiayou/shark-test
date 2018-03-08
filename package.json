@@ -1,13 +1,16 @@
 {
   "name": "shark-test",
-  "version": "0.0.1",
+  "version": "0.0.6",
   "description": "test cli-tool for shark angular projects",
   "main": "./dist/src/index.js",
   "bin": {
-    "shark-test": "./dist/src/index.js",
     "st": "./dist/src/index.js"
   },
-  "keywords": [],
+  "keywords": [
+    "angular",
+    "unitTest",
+    "angular4"
+  ],
   "scripts": {
     "build": "tsc",
     "start": "tsc -w"

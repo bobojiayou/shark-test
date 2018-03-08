@@ -11,7 +11,7 @@ const webpackDevMiddleware = require('webpack-dev-middleware');
 let blocked: any[] = [];
 let isBlocked = false;
 const karmaTestConfig = getKarmaTestConfig();
-console.log('karmaTestConfig', karmaTestConfig);
+// console.log('karmaTestConfig', karmaTestConfig);
 // Add files to the Karma files array.
 function addKarmaFiles(files: any[], newFiles: any[], prepend = false) {
     const defaults = {
@@ -54,8 +54,8 @@ const init: any = (config: any, emitter: any, customFileHandlers: any) => {
         const smsPath = path.dirname(require.resolve('source-map-support'));
         const ksmsPath = path.dirname(require.resolve('karma-source-map-support'));
         addKarmaFiles(config.files, [
-            { pattern: path.join(smsPath, 'browser-source-map-support.js'), watched: false },
-            { pattern: path.join(ksmsPath, 'client.js'), watched: false }
+            { pattern: path.resolve(smsPath, 'browser-source-map-support.js'), watched: false },
+            { pattern: path.resolve(ksmsPath, 'client.js'), watched: false }
         ], true);
     }
 
@@ -67,12 +67,12 @@ const init: any = (config: any, emitter: any, customFileHandlers: any) => {
             pattern = typeof pattern === 'string' ? { glob: pattern } : pattern;
             // Add defaults.
             // Input is always resolved relative to the appRoot.
-            pattern.input = path.resolve(path.join(karmaTestConfig.projectRoot, karmaTestConfig.basePath), pattern.input || '');
+            pattern.input = path.resolve(path.resolve(karmaTestConfig.projectRoot, karmaTestConfig.basePath), pattern.input || '');
             pattern.output = pattern.output || '';
             pattern.glob = pattern.glob || '';
 
             // Build karma file pattern.
-            const assetPath = path.join(pattern.input, pattern.glob);
+            const assetPath = path.resolve(pattern.input, pattern.glob);
             const filePattern = isDirectory(assetPath) ? assetPath + '/**' : assetPath;
             addKarmaFiles(config.files, [{ pattern: filePattern, included: false }]);
 
@@ -82,11 +82,11 @@ const init: any = (config: any, emitter: any, customFileHandlers: any) => {
             let relativePath: string, proxyPath: string;
             if (fs.existsSync(assetPath)) {
                 relativePath = path.relative(config.basePath, assetPath);
-                proxyPath = path.join(pattern.output, pattern.glob);
+                proxyPath = path.resolve(pattern.output, pattern.glob);
             } else {
                 // For globs (paths that don't exist), proxy pattern.output to pattern.input.
                 relativePath = path.relative(config.basePath, pattern.input);
-                proxyPath = path.join(pattern.output);
+                proxyPath = path.resolve(pattern.output);
 
             }
             // Proxy paths must have only forward slashes.
@@ -118,7 +118,7 @@ const init: any = (config: any, emitter: any, customFileHandlers: any) => {
     config.webpackMiddleware = Object.assign(webpackMiddlewareConfig, config.webpackMiddleware);
 
     // Remove the shark test file if present, for backwards compatibility.
-    const testFilePath = path.join(karmaTestConfig.projectRoot, karmaTestConfig.basePath, appConfig.test);
+    const testFilePath = path.resolve(karmaTestConfig.projectRoot, karmaTestConfig.basePath, appConfig.test);
     config.files.forEach((file: any, index: number) => {
         if (path.normalize(file.pattern) === testFilePath) {
             config.files.splice(index, 1);
@@ -183,8 +183,8 @@ const init: any = (config: any, emitter: any, customFileHandlers: any) => {
                 // Ensure script and style bundles are served.
                 // They are mentioned in the custom karma context page and we don't want them to 404.
                 const alwaysServe = [
-                    '/_shark_test_/polyfills.js',
                     '/_shark_test_/angular.dll.js',
+                    '/_shark_test_/polyfills.js',
                     '/_shark_test_/bootstrap.js',
                     '/_shark_test_/main.js'
                 ];
@@ -255,8 +255,8 @@ const initSourcemapReporter: any = function (this: any, baseReporterDecorator: a
 initSourcemapReporter.$inject = ['baseReporterDecorator', 'config'];
 
 module.exports = Object.assign({
-    'framework:shark': ['factory', init],
-    'preprocessor:shark': ['factory', preprocessor],
-    'reporter:shark': ['type', initSourcemapReporter],
+    'framework:shark-test': ['factory', init],
+    'preprocessor:shark-test': ['factory', preprocessor],
+    'reporter:shark-test': ['type', initSourcemapReporter],
     'middleware:sharkBlocker': ['factory', requestBlocker]
 });
