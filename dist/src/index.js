@@ -36,7 +36,7 @@ switch (COMMAND) {
     // init
     case '-i':
     case 'init':
-        init_1.default({});
+        init_1.default();
         break;
     // unit test
     case '-u':
@@ -46,4 +46,4 @@ switch (COMMAND) {
     default:
         break;
 }
-//# sourceMappingURL=/Users/bobo/Work/test/shark-test/src/index.js.map
+//# sourceMappingURL=/Users/bobo/Work/test/st/src/index.js.map

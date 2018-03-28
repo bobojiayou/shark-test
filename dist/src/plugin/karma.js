@@ -46,7 +46,7 @@ const init = (config, emitter, customFileHandlers) => {
     };
     if (testConfig.sourcemaps) {
         // Add a reporter that fixes sourcemap urls.
-        config.reporters.unshift('shark');
+        config.reporters.unshift('shark-test');
         // Code taken from https://github.com/tschaub/karma-source-map-support.
         // We can't use it directly because we need to add it conditionally in this file, and karma
         // frameworks cannot be added dynamically.
@@ -209,7 +209,7 @@ function requestBlocker() {
 // Strip the server address and webpack scheme (webpack://) from error log.
 const initSourcemapReporter = function (baseReporterDecorator, config) {
     baseReporterDecorator(this);
-    const reporterName = 'shark';
+    const reporterName = 'shark-test';
     const hasTrailingReporters = config.reporters.slice(-1).pop() !== reporterName;
     // Copied from "karma-jasmine-diff-reporter" source code:
     // In case, when multiple reporters are used in conjunction
@@ -233,9 +233,9 @@ const initSourcemapReporter = function (baseReporterDecorator, config) {
 };
 initSourcemapReporter.$inject = ['baseReporterDecorator', 'config'];
 module.exports = Object.assign({
-    'framework:shark': ['factory', init],
-    'preprocessor:shark': ['factory', preprocessor],
-    'reporter:shark': ['type', initSourcemapReporter],
+    'framework:shark-test': ['factory', init],
+    'preprocessor:shark-test': ['factory', preprocessor],
+    'reporter:shark-test': ['type', initSourcemapReporter],
     'middleware:sharkBlocker': ['factory', requestBlocker]
 });
-//# sourceMappingURL=/Users/bobo/Work/test/shark-test/src/plugin/karma.js.map
+//# sourceMappingURL=/Users/bobo/Work/test/st/src/plugin/karma.js.map

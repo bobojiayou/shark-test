@@ -1,0 +1,9 @@
+{
+    "basePath": "src/main/webapp",
+    "main": "test.ts",
+    "polyfills": "polyfills",
+    "configFile": "karma.conf.js",
+    "componentPath": "app",
+    "assets": ["assets", "favicon.ico"],
+    "indexTemplate": "index.ejs"
+}

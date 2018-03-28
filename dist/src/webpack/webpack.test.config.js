@@ -46,7 +46,8 @@ exports.webpackTestConfig = {
                     'angular2-template-loader',
                     'angular2-router-loader'
                 ],
-                exclude: [/\.(e2e|spec)\.ts$/]
+                exclude: [/\.e2e\.ts$/]
+                // exclude: [/\.(e2e|spec)\.ts$/]
             },
             {
                 test: /\.(js|ts)$/, loader: 'istanbul-instrumenter-loader',
@@ -127,4 +128,4 @@ exports.webpackTestConfig = {
         })
     ]
 };
-//# sourceMappingURL=/Users/bobo/Work/test/shark-test/src/webpack/webpack.test.config.js.map
+//# sourceMappingURL=/Users/bobo/Work/test/st/src/webpack/webpack.test.config.js.map

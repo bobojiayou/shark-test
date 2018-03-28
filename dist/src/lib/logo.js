@@ -12,4 +12,4 @@ function showLogoInfo(text, config) {
     });
 }
 exports.default = showLogoInfo;
-//# sourceMappingURL=/Users/bobo/Work/test/shark-test/src/lib/logo.js.map
+//# sourceMappingURL=/Users/bobo/Work/test/st/src/lib/logo.js.map

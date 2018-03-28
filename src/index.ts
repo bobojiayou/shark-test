@@ -39,7 +39,7 @@ switch (COMMAND) {
     // init
     case '-i':
     case 'init':
-        init({});
+        init();
         break;
     // unit test
     case '-u':

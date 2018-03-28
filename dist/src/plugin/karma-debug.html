@@ -7,7 +7,7 @@ just for immediate execution, without reporting to Karma server.
 <html>
 
 <head>
-%X_UA_COMPATIBLE%
+  %X_UA_COMPATIBLE%
   <title>Karma DEBUG RUNNER</title>
   <link href="favicon.ico" rel="icon" type="image/x-icon" />
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
@@ -25,8 +25,8 @@ just for immediate execution, without reporting to Karma server.
     // Configure our Karma
     %CLIENT_CONFIG%
 
-    // All served files with the latest timestamps
-    %MAPPINGS%
+      // All served files with the latest timestamps
+      %MAPPINGS%
   </script>
   <script type="text/javascript" src="_shark_test_/angular.dll.js" crossorigin="anonymous"></script>
   <script type="text/javascript" src="_shark_test_/polyfills.js" crossorigin="anonymous"></script>
@@ -35,7 +35,7 @@ just for immediate execution, without reporting to Karma server.
   <script type="text/javascript" src="_shark_test_/bootstrap.js" crossorigin="anonymous"></script>
   <script type="text/javascript" src="_shark_test_/main.js" crossorigin="anonymous"></script>
   <script type="text/javascript">
-      window.__karma__.loaded();
+    window.__karma__.loaded();
   </script>
 </body>
 

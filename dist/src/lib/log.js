@@ -8,4 +8,4 @@ const warn = (v) => _log(chalk.yellow(`[shark-test warn]:${v}`));
 exports.warn = warn;
 const error = (v) => _log(chalk.red(`[shark-test error]:${v}`));
 exports.error = error;
-//# sourceMappingURL=/Users/bobo/Work/test/shark-test/src/lib/log.js.map
+//# sourceMappingURL=/Users/bobo/Work/test/st/src/lib/log.js.map

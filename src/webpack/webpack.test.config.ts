@@ -49,7 +49,8 @@ export const webpackTestConfig = {
                     'angular2-template-loader',
                     'angular2-router-loader'
                 ],
-                exclude: [/\.(e2e|spec)\.ts$/]
+                exclude: [/\.e2e\.ts$/]
+                // exclude: [/\.(e2e|spec)\.ts$/]
             },
             {
                 test: /\.(js|ts)$/, loader: 'istanbul-instrumenter-loader',
@@ -105,6 +106,7 @@ export const webpackTestConfig = {
         extensions: ['.ts', '.js'],
         modules: [rootPath, 'node_modules']
     },
+
     plugins: [
         /* new ProgressBarPlugin(), */
 /*         new webpack.HotModuleReplacementPlugin(),

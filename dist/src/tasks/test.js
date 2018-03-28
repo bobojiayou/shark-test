@@ -15,4 +15,4 @@ exports.unitTest = (option) => {
         karmaServer.start();
     });
 };
-//# sourceMappingURL=/Users/bobo/Work/test/shark-test/src/tasks/test.js.map
+//# sourceMappingURL=/Users/bobo/Work/test/st/src/tasks/test.js.map

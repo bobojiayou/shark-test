@@ -1,6 +1,6 @@
 {
   "name": "shark-test",
-  "version": "0.0.8",
+  "version": "1.0.3",
   "description": "test cli-tool for shark angular projects",
   "main": "./dist/src/index.js",
   "bin": {
@@ -13,8 +13,8 @@
     "angular4"
   ],
   "scripts": {
-    "build": "tsc",
-    "start": "tsc -w"
+    "build": "tsc && node ./src/config/build",
+    "start": "tsc -w & node ./src/config/build"
   },
   "dependencies": {
     "ajv": "^6.1.1",
@@ -72,9 +72,9 @@
     "eslint": "^3.11.0",
     "extract-text-webpack-plugin": "^2.1.2",
     "jasmine-spec-reporter": "^4.2.1",
+    "node-typescript-compiler": "^1.1.1",
     "progress-bar-webpack-plugin": "^1.11.0",
     "ts-node": "^4.1.0",
-    "tsc": "^1.20150623.0",
     "tslint": "^5.8.0",
     "webpack": "^2.7.0",
     "webpack-dev-middleware": "^1.12.2",

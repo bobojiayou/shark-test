@@ -26,15 +26,15 @@ Reloaded before every execution run.
     // All served files with the latest timestamps
     %MAPPINGS%
   </script>
-  <script type="text/javascript" src="_shark_karma_webpack_/polyfills.js" crossorigin="anonymous"></script>
+  <script type="text/javascript" src="_shark_test_/angular.dll.js" crossorigin="anonymous"></script>
+  <script type="text/javascript" src="_shark_test_/polyfills.js" crossorigin="anonymous"></script>
   <!-- Dynamically replaced with <script> tags -->
   %SCRIPTS%
-  <script type="text/javascript" src="_shark_karma_webpack_/angular.dll.js" crossorigin="anonymous"></script>
-  <script type="text/javascript" src="_shark_karma_webpack_/bootstrap.js" crossorigin="anonymous"></script>
-  <script type="text/javascript" src="_shark_karma_webpack_/main.js" crossorigin="anonymous"></script>
+  <script type="text/javascript" src="_shark_test_/bootstrap.js" crossorigin="anonymous"></script>
+  <script type="text/javascript" src="_shark_test_/main.js" crossorigin="anonymous"></script>
 
   <script type="text/javascript">
-      window.__karma__.loaded();
+    window.__karma__.loaded();
   </script>
 </body>
 
