@@ -41,9 +41,13 @@ switch (COMMAND) {
     // unit test
     case '-u':
     case 'test':
-        test_1.unitTest(test_config_1.getKarmaOption());
+        test_1.start(test_config_1.getKarmaOption());
+        break;
+    case '-s':
+    case 'stop':
+        test_1.stop(test_config_1.getKarmaOption());
         break;
     default:
         break;
 }
-//# sourceMappingURL=/Users/bobo/Work/test/st/src/index.js.map
+//# sourceMappingURL=/Users/bobo/Work/test/shark-test/src/index.js.map

@@ -48,4 +48,4 @@ exports.getKarmaTestConfig = () => {
         basePath: config.basePath || 'src/main/webapp'
     };
 };
-//# sourceMappingURL=/Users/bobo/Work/test/st/src/config/test-config.js.map
+//# sourceMappingURL=/Users/bobo/Work/test/shark-test/src/config/test-config.js.map

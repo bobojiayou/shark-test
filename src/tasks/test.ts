@@ -19,13 +19,28 @@ export interface KarmaOptions {
  * @param {*} option karma配置项
  * @returns Promise
  */
-export const unitTest = (option: KarmaOptions) => {
+export const start = (option: KarmaOptions) => {
     return new Promise((resolve) => {
-        const karma = requireProjectModule(option.projectRoot, 'karma');
+        const Karma = requireProjectModule(option.projectRoot, 'karma');
         const _karmaOptions: KarmaOptions = Object.assign({}, option);
-        const karmaServer = new karma.Server(_karmaOptions, resolve);
+        const karmaServer = new Karma.Server(_karmaOptions, resolve);
         karmaServer.start();
     });
 };
 
+/**
+ * @description stop karma server
+ * @export
+ * @returns Promise
+ */
+export const stop = (option: KarmaOptions) => {
+    const Karma = requireProjectModule(option.projectRoot, 'karma');
+    const Stopper = Karma.stopper;
+    Stopper.stop(option, function (exitCode: number) {
+        if (exitCode === 0) {
+            console.log('Server stop');
+        }
+        process.exit(exitCode);
+    });
+};
 

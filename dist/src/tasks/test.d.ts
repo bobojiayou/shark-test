@@ -15,4 +15,10 @@ export interface KarmaOptions {
  * @param {*} option karma配置项
  * @returns Promise
  */
-export declare const unitTest: (option: KarmaOptions) => Promise<{}>;
+export declare const start: (option: KarmaOptions) => Promise<{}>;
+/**
+ * @description stop karma server
+ * @export
+ * @returns Promise
+ */
+export declare const stop: (option: KarmaOptions) => void;

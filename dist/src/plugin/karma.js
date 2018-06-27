@@ -238,4 +238,4 @@ module.exports = Object.assign({
     'reporter:shark-test': ['type', initSourcemapReporter],
     'middleware:sharkBlocker': ['factory', requestBlocker]
 });
-//# sourceMappingURL=/Users/bobo/Work/test/st/src/plugin/karma.js.map
+//# sourceMappingURL=/Users/bobo/Work/test/shark-test/src/plugin/karma.js.map

@@ -3,7 +3,7 @@ const INFO = require('../../package.json');
 import showLogoInfo from './lib/logo';
 import showHelpInfo from './lib/help';
 import * as log from './lib/log';
-import { unitTest } from './tasks/test';
+import { start, stop } from './tasks/test';
 import init from './tasks/init';
 import { getKarmaOption } from './config/test-config';
 
@@ -44,7 +44,11 @@ switch (COMMAND) {
     // unit test
     case '-u':
     case 'test':
-        unitTest(getKarmaOption());
+        start(getKarmaOption());
+        break;
+    case '-s':
+    case 'stop':
+        stop(getKarmaOption());
         break;
     default:
         break;
