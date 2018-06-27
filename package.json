@@ -1,6 +1,6 @@
 {
   "name": "shark-test",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "test cli-tool for shark angular projects",
   "main": "./dist/src/index.js",
   "bin": {
