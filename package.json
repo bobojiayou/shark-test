@@ -3,6 +3,10 @@
   "version": "1.0.4",
   "description": "test cli-tool for shark angular projects",
   "main": "./dist/src/index.js",
+  "author": {
+    "name": "yangbo",
+    "email": "491399011@qq.com"
+  },
   "bin": {
     "shark-test": "./dist/src/index.js",
     "st": "./dist/src/index.js"
