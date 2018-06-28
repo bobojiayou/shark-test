@@ -50,4 +50,3 @@ switch (COMMAND) {
     default:
         break;
 }
-//# sourceMappingURL=/Users/bobo/Work/test/shark-test/src/index.js.map

@@ -13,4 +13,3 @@ class KarmaWebpackThrowError {
     }
 }
 exports.KarmaWebpackThrowError = KarmaWebpackThrowError;
-//# sourceMappingURL=/Users/bobo/Work/test/shark-test/src/webpack/karma-webpack-throw-error.js.map

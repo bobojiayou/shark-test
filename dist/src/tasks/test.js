@@ -30,4 +30,3 @@ exports.stop = (option) => {
         process.exit(exitCode);
     });
 };
-//# sourceMappingURL=/Users/bobo/Work/test/shark-test/src/tasks/test.js.map

@@ -10,4 +10,3 @@ function isDirectory(path) {
     }
 }
 exports.isDirectory = isDirectory;
-//# sourceMappingURL=/Users/bobo/Work/test/shark-test/src/lib/is-directory.js.map

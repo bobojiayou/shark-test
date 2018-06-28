@@ -128,4 +128,3 @@ exports.webpackTestConfig = {
         })
     ]
 };
-//# sourceMappingURL=/Users/bobo/Work/test/shark-test/src/webpack/webpack.test.config.js.map

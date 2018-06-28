@@ -11,4 +11,3 @@ function requireProjectModule(root, moduleName) {
     return require(resolveProjectModule(root, moduleName));
 }
 exports.requireProjectModule = requireProjectModule;
-//# sourceMappingURL=/Users/bobo/Work/test/shark-test/src/lib/require-project-module.js.map

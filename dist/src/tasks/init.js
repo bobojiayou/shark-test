@@ -76,4 +76,3 @@ exports.fileCopy = (filename1, filename2, done) => {
         }
     });
 };
-//# sourceMappingURL=/Users/bobo/Work/test/shark-test/src/tasks/init.js.map
